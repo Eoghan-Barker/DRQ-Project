@@ -5,9 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Content } from "./components/Content";
-import { Read } from "./components/Read";
-import { Create } from "./components/Create";
+import { Content } from "./components/content";
+import { Read } from "./components/read";
+import { Create } from "./components/create";
+import { Edit } from "./components/edit";
 
 class App extends React.Component {
   // Render must be defined when you inherit from react.component
@@ -20,11 +21,14 @@ class App extends React.Component {
           {/* Changes url when clicked, this can be used with routing to swap in components */}
           <Navbar bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/">Navbar</Navbar.Brand>
-              <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/read">Read</Nav.Link>
-                <Nav.Link href="/create">Create</Nav.Link>
+              <Navbar.Brand href="/">Daily Journal</Navbar.Brand>
+              <Nav className="me-auto">
+                <Nav.Link href="/">Morning Entry</Nav.Link>
+                <Nav.Link href="/read">To-Do</Nav.Link>
+                <Nav.Link href="/create">Evening Reflection</Nav.Link>
+              </Nav>
+              <Nav>
+                <Nav.Link href="/">Previous Entries</Nav.Link>
               </Nav>
             </Container>
           </Navbar>
@@ -34,6 +38,7 @@ class App extends React.Component {
             <Route path="/" element={<Content />} />
             <Route path="/read" element={<Read />} />
             <Route path="/create" element={<Create />} />
+            <Route path='/edit/:id' element={<Edit></Edit>} />
           </Routes>
         </div>
       </Router>
