@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Reviews } from "./components/reviews";
 import { CreateReview } from "./components/createReview";
 import { EditReview } from "./components/editReview";
@@ -30,6 +30,7 @@ class App extends React.Component {
 
           {/* show different component based on url (client side routing using react-router-dom)*/}
           <Routes>
+            <Route path="/" element={<Reviews />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/createReview" element={<CreateReview />} />
             <Route path='/editReview/:id' element={<EditReview />} />

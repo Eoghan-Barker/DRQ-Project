@@ -37,7 +37,13 @@ export class CreateReview extends Component {
     axios.post("http://localhost:4000/api/shows", show).then().catch();
 
     // clear the state after logging
-    this.setState({ title: "", director: "", poster: "" , rating: "", comments: ""});
+    this.setState({
+      title: "",
+      director: "",
+      poster: "",
+      rating: "",
+      comments: "",
+    });
   }
 
   // Add the inputed values to the state
@@ -63,7 +69,7 @@ export class CreateReview extends Component {
 
   render() {
     return (
-      <div>  
+      <div>
         {/* React form acts similarly to html one, uses JSX
         Invoke methods on submit button press and when the input value is changed
         to update the state */}
