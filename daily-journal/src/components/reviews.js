@@ -2,6 +2,7 @@ import React from 'react';
 import { Shows } from './shows';
 import axios from 'axios';
 import CardGroup from "react-bootstrap/CardGroup"
+import { NoReviews } from './noReviews';
 
 export class Reviews extends React.Component {
 
@@ -9,6 +10,8 @@ export class Reviews extends React.Component {
         super();
         // event binding
         this.ReloadData = this.ReloadData.bind(this);
+
+        
     }
 
     // state is used to pass items down to children using state.props.xxx <= json data headers
@@ -43,10 +46,16 @@ export class Reviews extends React.Component {
         // Show Array of show objects
         shows: [ ]
     }
+
+    
+    
     render(){
+        if(this.state.shows.length <= 0){
+            return <NoReviews />;
+        }
+
         return(
             <div>
-                <h3>You have not created any reviews yet. Once you do they will appear here.</h3>
                 {/* Embed component in this component, pass shows array to Shows componant */}
                 <CardGroup>
                 <Shows shows={this.state.shows} ReloadData={this.ReloadData}/>
