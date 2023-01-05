@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 
-export class Create extends React.Component {
+export class Create extends Component {
   constructor() {
     super();
     // Binding event is needed in constructor to handle event invoking
@@ -50,7 +50,9 @@ export class Create extends React.Component {
   render() {
     return (
       <div>
-        <h3>Hello from my Create Component</h3>
+        {const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}
+        <h3>Hello</h3>
+        
         {/* React form acts similarly to html one, uses JSX
         Invoke methods on submit button press and when the input value is changed
         to update the state */}
