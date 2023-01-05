@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shows } from './shows';
 import axios from 'axios';
+import CardGroup from "react-bootstrap/CardGroup"
 
 export class Reviews extends React.Component {
 
@@ -47,7 +48,9 @@ export class Reviews extends React.Component {
             <div>
                 <h3>You have not created any reviews yet. Once you do they will appear here.</h3>
                 {/* Embed component in this component, pass shows array to Shows componant */}
+                <CardGroup>
                 <Shows shows={this.state.shows} ReloadData={this.ReloadData}/>
+                </CardGroup>
             </div>
         );
     }
