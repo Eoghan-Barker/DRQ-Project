@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export function Edit(props) {
+export function EditReview(props) {
   // The useParams hook returns an object of key/value pairs of
   // the dynamic params from the current URL that were matched by
   //the <Route path>.
@@ -14,6 +14,8 @@ export function Edit(props) {
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState("");
   const [director, setDirector] = useState("");
+  const [rating, setRating] = useState("");
+  const [comments, setComments] = useState("");
   // useNavigate return a function that we can use to navigate
   const navigate = useNavigate();
   //useEffect Hook is similar componentDidMount
@@ -28,6 +30,8 @@ export function Edit(props) {
         setTitle(response.data.title);
         setPoster(response.data.poster);
         setDirector(response.data.director);
+        setRating(response.data.rating);
+        setComments(response.data.comments);
       })
       .catch(function (error) {
         console.log(error);
@@ -42,6 +46,8 @@ export function Edit(props) {
       title: title,
       poster: poster,
       director: director,
+      rating: rating,
+      comments: comments,
     };
 
     axios.put("http://localhost:4000/api/show/" + id, newShow).then((res) => {
@@ -78,6 +84,24 @@ export function Edit(props) {
             className="form-control"
             value={director}
             onChange={(e) => setDirector(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Rating: </label>
+          <input
+            type="text"
+            className="form-control"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Comments: </label>
+          <input
+            type="text"
+            className="form-control"
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
           />
         </div>
         <div className="form-group">

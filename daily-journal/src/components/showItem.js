@@ -26,18 +26,21 @@ export class ShowItem extends React.Component {
   render() {
     return (
       <div>
+        {/* width="200" height="200" */}
         {/* Bootstrap Card for stylizing */}
-        <Card>
+        <Card style={{ width: '18rem' }}>
           {/* Get object info from show array */}
           <Card.Header>{this.props.show.title}</Card.Header>
+          <Card.Img variant="top" src={this.props.show.poster} width="100" height="200" />
           <Card.Body>
+            <Card.Title>{this.props.show.rating}</Card.Title>
+            <Card.Text>{this.props.show.comments}</Card.Text>
             <blockquote className="blockquote mb-0">
-              <img src={this.props.show.poster} width="200" height="200" />
               <footer>{this.props.show.director}</footer>
             </blockquote>
           </Card.Body>
           {/* Add a link to the edit component on a button */}
-          <Link to={"/edit/" + this.props.show._id} className="btn btn-primary">
+          <Link to={"/editReview/" + this.props.show._id} className="btn btn-primary">
             Edit
           </Link>
           {/* Add a red button to invoke a method to delete a show */}

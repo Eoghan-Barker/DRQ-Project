@@ -24,6 +24,8 @@ const showSchema = new mongoose.Schema({
   title: String,
   poster: String,
   director: String,
+  rating: String,
+  comments: String,
 });
 
 // create a model from the schema - model = object to interact with the database
@@ -91,6 +93,8 @@ app.post("/api/shows", (req, res) => {
     title: req.body.title,
     poster: req.body.poster,
     director: req.body.director,
+    rating: req.body.rating,
+    comments: req.body.comments,
   });
   res.send("data recieved");
 });

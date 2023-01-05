@@ -7,8 +7,8 @@ import Nav from "react-bootstrap/Nav";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Content } from "./components/content";
 import { Reviews } from "./components/reviews";
-import { Create } from "./components/create";
-import { Edit } from "./components/edit";
+import { CreateReview } from "./components/createReview";
+import { EditReview } from "./components/editReview";
 
 class App extends React.Component {
   // Render must be defined when you inherit from react.component
@@ -23,9 +23,8 @@ class App extends React.Component {
             <Container>
               <Navbar.Brand href="/">TV Show Reviews</Navbar.Brand>
               <Nav className="me-auto">
-                <Nav.Link href="/">Test</Nav.Link>
                 <Nav.Link href="/reviews">View Reviews</Nav.Link>
-                <Nav.Link href="/create">Add Review</Nav.Link>
+                <Nav.Link href="/createReview">Add Review</Nav.Link>
               </Nav>
               {/* <Nav>
                 <Nav.Link href="/">Previous Entries</Nav.Link>
@@ -37,8 +36,8 @@ class App extends React.Component {
           <Routes>
             <Route path="/" element={<Content />} />
             <Route path="/reviews" element={<Reviews />} />
-            <Route path="/create" element={<Create />} />
-            <Route path='/edit/:id' element={<Edit />} />
+            <Route path="/createReview" element={<CreateReview />} />
+            <Route path='/editReview/:id' element={<EditReview />} />
           </Routes>
         </div>
       </Router>

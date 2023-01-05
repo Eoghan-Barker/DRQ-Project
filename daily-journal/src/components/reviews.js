@@ -45,7 +45,7 @@ export class Reviews extends React.Component {
     render(){
         return(
             <div>
-                <h3>Hello from my Reviews Component!</h3>
+                <h3>You have not created any reviews yet. Once you do they will appear here.</h3>
                 {/* Embed component in this component, pass shows array to Shows componant */}
                 <Shows shows={this.state.shows} ReloadData={this.ReloadData}/>
             </div>

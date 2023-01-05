@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export class Create extends Component {
+export class CreateReview extends Component {
   constructor() {
     super();
     // Binding event is needed in constructor to handle event invoking
@@ -9,16 +9,20 @@ export class Create extends Component {
     this.onChangeShowTitle = this.onChangeShowTitle.bind(this);
     this.onChangeShowDirector = this.onChangeShowDirector.bind(this);
     this.onChangeShowPoster = this.onChangeShowPoster.bind(this);
+    this.onChangeShowRating = this.onChangeShowRating.bind(this);
+    this.onChangeShowComments = this.onChangeShowComments.bind(this);
     this.state = {
       title: "",
       director: "",
       poster: "",
+      rating: "",
+      comments: "",
     };
   }
   handleSubmit(e) {
     e.preventDefault();
     console.log(`${this.state.title},
-    ${this.state.director}, ${this.state.poster}`);
+    ${this.state.director}, ${this.state.poster}, ${this.state.rating}, ${this.state.comments}`);
 
     // Use axios to post the http request to the server (use post to embed data in the response)
     const show = {
@@ -26,12 +30,14 @@ export class Create extends Component {
       title: this.state.title,
       poster: this.state.poster,
       director: this.state.director,
+      rating: this.state.rating,
+      comments: this.state.comments,
     };
     // async request
     axios.post("http://localhost:4000/api/shows", show).then().catch();
 
     // clear the state after logging
-    this.setState({ title: "", director: "", poster: "" });
+    this.setState({ title: "", director: "", poster: "" , rating: "", comments: ""});
   }
 
   // Add the inputed values to the state
@@ -45,6 +51,14 @@ export class Create extends Component {
 
   onChangeShowPoster(e) {
     this.setState({ poster: e.target.value });
+  }
+
+  onChangeShowRating(e) {
+    this.setState({ rating: e.target.value });
+  }
+
+  onChangeShowComments(e) {
+    this.setState({ comments: e.target.value });
   }
 
   render() {
@@ -79,6 +93,24 @@ export class Create extends Component {
               className="form-control"
               value={this.state.poster}
               onChange={this.onChangeShowPoster}
+            />
+          </div>
+          <div className="form-group">
+            <label>Add Rating: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.rating}
+              onChange={this.onChangeShowRating}
+            />
+          </div>
+          <div className="form-group">
+            <label>Add Comments: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.comments}
+              onChange={this.onChangeShowComments}
             />
           </div>
           <input type="submit" value="Submit" />
