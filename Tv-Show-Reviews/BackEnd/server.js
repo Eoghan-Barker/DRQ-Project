@@ -6,6 +6,10 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 // import mongoose
 const mongoose = require("mongoose");
+// Serve the static files from the React app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 //exception catching
 main().catch((err) => console.log(err));
@@ -106,6 +110,12 @@ app.delete("/api/shows/:id", (req, res) => {
     res.send(data);
   });
 });
+
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+  });
+  
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
