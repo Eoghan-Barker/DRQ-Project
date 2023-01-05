@@ -50,6 +50,8 @@ export class Reviews extends React.Component {
     
     
     render(){
+        // Condition Rendering - if there are no items in the shows array then render the NoReviews component
+        // otherwise render the CardGroup of shows
         if(this.state.shows.length <= 0){
             return <NoReviews />;
         }
@@ -57,6 +59,7 @@ export class Reviews extends React.Component {
         return(
             <div>
                 {/* Embed component in this component, pass shows array to Shows componant */}
+                {/* Use a cardGroup to align the cards horizontally */}
                 <CardGroup>
                 <Shows shows={this.state.shows} ReloadData={this.ReloadData}/>
                 </CardGroup>
