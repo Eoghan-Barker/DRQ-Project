@@ -12,8 +12,8 @@ export function Edit(props) {
   // update arrays using the React useState()
   // and without the Array object's push() method
   const [title, setTitle] = useState("");
-  const [cover, setCover] = useState("");
-  const [author, setAuthor] = useState("");
+  const [poster, setPoster] = useState("");
+  const [director, setDirector] = useState("");
   // useNavigate return a function that we can use to navigate
   const navigate = useNavigate();
   //useEffect Hook is similar componentDidMount
@@ -22,12 +22,12 @@ export function Edit(props) {
     //make a HTTP Request with GET method and pass as part of the
     //url.
     axios
-      .get("http://localhost:4000/api/books/" + id)
+      .get("http://localhost:4000/api/shows/" + id)
       .then((response) => {
         // Assign Response data to the arrays using useState.
         setTitle(response.data.title);
-        setCover(response.data.cover);
-        setAuthor(response.data.author);
+        setPoster(response.data.poster);
+        setDirector(response.data.director);
       })
       .catch(function (error) {
         console.log(error);
@@ -37,16 +37,16 @@ export function Edit(props) {
   // need to create a function in a variable to handle the submit event on the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newBook = {
+    const newShow = {
       id: id,
       title: title,
-      cover: cover,
-      author: author,
+      poster: poster,
+      director: director,
     };
 
-    axios.put("http://localhost:4000/api/book/" + id, newBook).then((res) => {
+    axios.put("http://localhost:4000/api/show/" + id, newShow).then((res) => {
       console.log(res.data);
-      navigate("/read");
+      navigate("/reviews");
     });
   };
 
@@ -54,7 +54,7 @@ export function Edit(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Add Book Title: </label>
+          <label>Add TV Show Title: </label>
           <input
             type="text"
             className="form-control"
@@ -63,25 +63,25 @@ export function Edit(props) {
           />
         </div>
         <div className="form-group">
-          <label>Add Cover URL: </label>
+          <label>Add poster URL: </label>
           <input
             type="text"
             className="form-control"
-            value={cover}
-            onChange={(e) => setCover(e.target.value)}
+            value={poster}
+            onChange={(e) => setPoster(e.target.value)}
           />
         </div>
         <div className="form-group">
-          <label>Add Author: </label>
+          <label>Add Director: </label>
           <input
             type="text"
             className="form-control"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            value={director}
+            onChange={(e) => setDirector(e.target.value)}
           />
         </div>
         <div className="form-group">
-          <input type="submit" value="Edit Book" className="btn btn-primary" />
+          <input type="submit" value="Edit Show" className="btn btn-primary" />
         </div>
       </form>
     </div>

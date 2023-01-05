@@ -20,14 +20,14 @@ async function main() {
 }
 
 // define the data to go into the mongoDB collection
-const bookSchema = new mongoose.Schema({
+const showSchema = new mongoose.Schema({
   title: String,
-  cover: String,
-  author: String,
+  poster: String,
+  director: String,
 });
 
 // create a model from the schema - model = object to interact with the database
-const bookModel = mongoose.model("Books", bookSchema);
+const showModel = mongoose.model("Shows", showSchema);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -51,27 +51,27 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/api/books", (req, res) => {
+app.get("/api/shows", (req, res) => {
   //Query the database on the server to show all the documents
-  bookModel.find((error, data) => {
+  showModel.find((error, data) => {
     res.json(data);
   });
 });
 
-app.get("/api/books/:id", (req, res) => {
+app.get("/api/shows/:id", (req, res) => {
   // getting id that is passed as part of the url
   console.log(req.params.id);
 
   // handle the return from the database
-  bookModel.findById(req.params.id, (error, data) => {
+  showModel.findById(req.params.id, (error, data) => {
     res.json(data);
   });
 });
 
 // Handle the edit button server side and edit the correct book
-app.put("/api/book/:id", (req, res) => {
+app.put("/api/show/:id", (req, res) => {
   console.log("Update: " + req.params.id);
-  bookModel.findByIdAndUpdate(
+  showModel.findByIdAndUpdate(
     req.params.id,
     req.body,
     { new: true },
@@ -84,21 +84,21 @@ app.put("/api/book/:id", (req, res) => {
 // Pull the data out from the form without the data being in the url
 // This gives access to the data server side
 // This will let us work with a database
-app.post("/api/books", (req, res) => {
+app.post("/api/shows", (req, res) => {
   console.log(req.body);
   // create a record in the database, set the fields using http POST
-  bookModel.create({
+  showModel.create({
     title: req.body.title,
-    cover: req.body.cover,
-    author: req.body.author,
+    poster: req.body.poster,
+    director: req.body.director,
   });
   res.send("data recieved");
 });
 
-app.delete("/api/books/:id", (req, res) => {
+app.delete("/api/shows/:id", (req, res) => {
   console.log("deleting: " + req.params.id);
-  // use the model and book id to delete the book from the database
-  bookModel.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
+  // use the model and show id to delete the show from the database
+  showModel.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
     res.send(data);
   });
 });

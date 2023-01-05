@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-export class BookItem extends React.Component {
+export class ShowItem extends React.Component {
   constructor() {
     // Binding event is needed to handle event invoking
     super();
-    this.DeleteBook = this.DeleteBook.bind(this);
+    this.DeleteShow = this.DeleteShow.bind(this);
   }
-  DeleteBook(e) {
+  DeleteShow(e) {
     e.preventDefault();
 
     // use axios to talk http to the server - this will delete a record from the database
     // we get a response and refresh the page
     axios
-      .delete("http://localhost:4000/api/books/" + this.props.book._id)
+      .delete("http://localhost:4000/api/shows/" + this.props.show._id)
       .then((res) => {
         this.props.ReloadData();
       })
@@ -28,20 +28,20 @@ export class BookItem extends React.Component {
       <div>
         {/* Bootstrap Card for stylizing */}
         <Card>
-          {/* Get onject info from book array */}
-          <Card.Header>{this.props.book.title}</Card.Header>
+          {/* Get object info from show array */}
+          <Card.Header>{this.props.show.title}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <img src={this.props.book.cover} width="200" height="200" />
-              <footer>{this.props.book.author}</footer>
+              <img src={this.props.show.poster} width="200" height="200" />
+              <footer>{this.props.show.director}</footer>
             </blockquote>
           </Card.Body>
           {/* Add a link to the edit component on a button */}
-          <Link to={"/edit/" + this.props.book._id} className="btn btn-primary">
+          <Link to={"/edit/" + this.props.show._id} className="btn btn-primary">
             Edit
           </Link>
-          {/* Add a red button to invoke a method to delete a book */}
-          <Button variant="danger" onClick={this.DeleteBook}>
+          {/* Add a red button to invoke a method to delete a show */}
+          <Button variant="danger" onClick={this.DeleteShow}>
             Delete
           </Button>
         </Card>

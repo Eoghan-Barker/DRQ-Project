@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Content } from "./components/content";
-import { Read } from "./components/read";
+import { Reviews } from "./components/reviews";
 import { Create } from "./components/create";
 import { Edit } from "./components/edit";
 
@@ -21,24 +21,24 @@ class App extends React.Component {
           {/* Changes url when clicked, this can be used with routing to swap in components */}
           <Navbar bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/">Daily Journal</Navbar.Brand>
+              <Navbar.Brand href="/">TV Show Reviews</Navbar.Brand>
               <Nav className="me-auto">
-                <Nav.Link href="/">Morning Entry</Nav.Link>
-                <Nav.Link href="/read">To-Do</Nav.Link>
-                <Nav.Link href="/create">Evening Reflection</Nav.Link>
+                <Nav.Link href="/">Test</Nav.Link>
+                <Nav.Link href="/reviews">View Reviews</Nav.Link>
+                <Nav.Link href="/create">Add Review</Nav.Link>
               </Nav>
-              <Nav>
+              {/* <Nav>
                 <Nav.Link href="/">Previous Entries</Nav.Link>
-              </Nav>
+              </Nav> */}
             </Container>
           </Navbar>
 
           {/* show different component based on url (client side routing using react-router-dom)*/}
           <Routes>
             <Route path="/" element={<Content />} />
-            <Route path="/read" element={<Read />} />
+            <Route path="/reviews" element={<Reviews />} />
             <Route path="/create" element={<Create />} />
-            <Route path='/edit/:id' element={<Edit></Edit>} />
+            <Route path='/edit/:id' element={<Edit />} />
           </Routes>
         </div>
       </Router>

@@ -6,82 +6,79 @@ export class Create extends Component {
     super();
     // Binding event is needed in constructor to handle event invoking
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
-    this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
-    this.onChangeBookCover = this.onChangeBookCover.bind(this);
+    this.onChangeShowTitle = this.onChangeShowTitle.bind(this);
+    this.onChangeShowDirector = this.onChangeShowDirector.bind(this);
+    this.onChangeShowPoster = this.onChangeShowPoster.bind(this);
     this.state = {
       title: "",
-      author: "",
-      cover: "",
+      director: "",
+      poster: "",
     };
   }
   handleSubmit(e) {
     e.preventDefault();
     console.log(`${this.state.title},
-    ${this.state.author}, ${this.state.cover}`);
+    ${this.state.director}, ${this.state.poster}`);
 
     // Use axios to post the http request to the server (use post to embed data in the response)
-    const book = {
+    const show = {
       // object to pass up to the server
       title: this.state.title,
-      cover: this.state.cover,
-      author: this.state.author,
+      poster: this.state.poster,
+      director: this.state.director,
     };
     // async request
-    axios.post("http://localhost:4000/api/books", book).then().catch();
+    axios.post("http://localhost:4000/api/shows", show).then().catch();
 
     // clear the state after logging
-    this.setState({ title: "", author: "", cover: "" });
+    this.setState({ title: "", director: "", poster: "" });
   }
 
   // Add the inputed values to the state
-  onChangeBookTitle(e) {
+  onChangeShowTitle(e) {
     this.setState({ title: e.target.value });
   }
 
-  onChangeBookAuthor(e) {
-    this.setState({ author: e.target.value });
+  onChangeShowDirector(e) {
+    this.setState({ director: e.target.value });
   }
 
-  onChangeBookCover(e) {
-    this.setState({ cover: e.target.value });
+  onChangeShowPoster(e) {
+    this.setState({ poster: e.target.value });
   }
 
   render() {
     return (
-      <div>
-        {const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}
-        <h3>Hello</h3>
-        
+      <div>  
         {/* React form acts similarly to html one, uses JSX
         Invoke methods on submit button press and when the input value is changed
         to update the state */}
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Add Book Title: </label>
+            <label>Add Show Title: </label>
             <input
               type="text"
               className="form-control"
               value={this.state.title}
-              onChange={this.onChangeBookTitle}
+              onChange={this.onChangeShowTitle}
             />
           </div>
           <div className="form-group">
-            <label>Add Book Author: </label>
+            <label>Add Show Director: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.author}
-              onChange={this.onChangeBookAuthor}
+              value={this.state.director}
+              onChange={this.onChangeShowDirector}
             />
           </div>
           <div className="form-group">
-            <label>Add Book Cover: </label>
+            <label>Add Show Poster: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.cover}
-              onChange={this.onChangeBookCover}
+              value={this.state.poster}
+              onChange={this.onChangeShowPoster}
             />
           </div>
           <input type="submit" value="Submit" />
